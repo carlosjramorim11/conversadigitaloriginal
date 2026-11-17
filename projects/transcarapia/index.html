@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111214">
+    <meta name="description" content="Transcarapiá — transporte e logística para conectar operações e destinos.">
+    <title>Transcarapiá — Transporte e logística</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Transcarapiá, início">
+        <img src="assets/images/transcarapia-symbol.png" alt="">
+        <span>TRANSCARAPIÁ</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#empresa">A empresa</a>
+        <a href="#operacao">Nossa operação</a>
+      </nav>
+      <a class="header-link" href="#operacao">Nossa operação <span aria-hidden="true">↘</span></a>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <img class="hero-image" src="assets/images/transcarapia-truck.jpeg" alt="Caminhão Transcarapiá pronto para seguir viagem">
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span></span> TRANSPORTE &amp; LOGÍSTICA</p>
+          <h1>Movemos o que<br>faz o seu negócio <em>seguir.</em></h1>
+          <p class="hero-copy">Uma operação feita de cuidado, compromisso e atenção em cada etapa do caminho.</p>
+          <a class="button" href="#empresa">Conheça a Transcarapiá <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-index"><span>01</span> / 03</div>
+      </section>
+
+      <section class="intro section-wrap" id="empresa">
+        <div class="intro-label">
+          <img src="assets/images/transcarapia-logo.png" alt="Transcarapiá">
+          <span>PARCERIA QUE MOVE</span>
+        </div>
+        <div class="intro-copy">
+          <p class="eyebrow">A EMPRESA</p>
+          <h2>Seu caminho em boas mãos.</h2>
+          <p>A Transcarapiá conecta transporte e logística em uma operação comprometida com cada carga. Do cuidado com os produtos à atenção com os processos, trabalhamos para que tudo siga em frente.</p>
+        </div>
+      </section>
+
+      <section class="operation" id="operacao">
+        <div class="operation-photo">
+          <img src="assets/images/transcarapia-warehouse.jpeg" alt="Equipe da Transcarapiá em área de estoque e armazenagem" loading="lazy">
+        </div>
+        <div class="operation-copy">
+          <p class="eyebrow">NOSSA OPERAÇÃO <span>02 / 03</span></p>
+          <h2>Organização em cada etapa.</h2>
+          <p>Uma boa entrega começa muito antes de pegar a estrada. Atenção à operação e cuidado com os produtos fazem parte do trabalho todos os dias.</p>
+          <div class="operation-points">
+            <div><span>01</span><p>Cuidado com cada carga</p></div>
+            <div><span>02</span><p>Processos organizados</p></div>
+            <div><span>03</span><p>Compromisso do início ao destino</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing" id="contato">
+        <p class="eyebrow">TRANSCARAPIÁ</p>
+        <h2>Seguimos juntos.<br><em>Seguimos em frente.</em></h2>
+        <a class="button button-light" href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a>
+        <img src="assets/images/transcarapia-symbol.png" alt="" aria-hidden="true">
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="year"></span> Transcarapiá</span>
+      <span>Transporte &amp; logística</span>
+    </footer>
+    <script>
+      document.querySelector("#year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

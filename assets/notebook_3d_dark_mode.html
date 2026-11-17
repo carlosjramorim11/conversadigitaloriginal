@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notebook 3D - Hero Component</title>
+  <!-- Importando Three.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* Reset e estilo base compatível com o fundo escuro do portfólio */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      color-scheme: dark;
+      background-color: transparent;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+    }
+
+    /* Container isolado para encaixar na coluna direita da Hero Section */
+    #laptop-3d-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+    }
+
+    #laptop-3d-wrapper:active {
+      cursor: grabbing;
+    }
+
+    canvas {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      background: transparent;
+      outline: none;
+    }
+
+    /* Controles discretos para inspecionar a tampa traseira / pausar */
+    .viewer-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      background: rgba(18, 18, 22, 0.72);
+      backdrop-filter: blur(8px);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
+    .viewer-btn {
+      background: transparent;
+      border: none;
+      color: #a1a1aa;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .viewer-btn:hover,
+    .viewer-btn.active {
+      color: #ffffff;
+      background: rgba(139, 92, 246, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container pronto para ser copiado para a direita da Hero Section -->
+  <div id="laptop-3d-wrapper">
+    <div class="viewer-controls">
+      <button type="button" class="viewer-btn active" id="btn-auto">Auto 360°</button>
+      <button type="button" class="viewer-btn" id="btn-back">Ver Logo Traseira</button>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Componente 3D: Notebook Minimalista Dark Mode com Rotação 360° Contínua
+     * Desenvolvido com Three.js puro e texturas procedurais em Canvas 2D.
+     */
+    window.onload = function () {
+      const container = document.getElementById('laptop-3d-wrapper');
+      if (!container) return;
+
+      // 1. Configuração da Cena, Câmera e Renderizador
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(
+        38,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+      camera.position.set(0, 1.35, 5.4);
+      camera.lookAt(0, 0.15, 0);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true, // Fundo transparente para integrar perfeitamente ao grid/fundo do site
+        powerPreference: "high-performance"
+      });
+      renderer.setClearColor(0x000000, 0);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+      container.appendChild(renderer.domElement);
+
+      // 2. Iluminação Estratégica (Estética Dark & Neon Roxo)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+      scene.add(ambientLight);
+
+      // Luz principal frontal-superior fria para destacar o acabamento metálico fosco
+      const keyLight = new THREE.DirectionalLight(0xf8fafc, 1.4);
+      keyLight.position.set(4, 6, 5);
+      scene.add(keyLight);
+
+      // Luz de recorte (Rim Light) roxa vibrante (#8b5cf6)
+      const purpleRimLight = new THREE.PointLight(0x8b5cf6, 3.2, 12);
+      purpleRimLight.position.set(-3.2, 2.2, -2.5);
+      scene.add(purpleRimLight);
+
+      // Luz de recorte secundária azul ciano (#00b4ff) para harmonizar com a logo
+      const cyanRimLight = new THREE.PointLight(0x00b4ff, 2.2, 12);
+      cyanRimLight.position.set(3.4, 1.8, -2.8);
+      scene.add(cyanRimLight);
+
+      // Luz secundária roxa suave na base frontal
+      const frontPurpleLight = new THREE.PointLight(0x8b5cf6, 1.6, 10);
+      frontPurpleLight.position.set(2.5, -1.2, 3.5);
+      scene.add(frontPurpleLight);
+
+      // 3. Textura Dinâmica da Tela (Código Limpo + Métricas de Performance & Automação)
+      function createScreenTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 640;
+        const ctx = canvas.getContext('2d');
+
+        // Fundo da tela (Dark IDE)
+        ctx.fillStyle = '#09090b';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Grade sutil de fundo
+        ctx.strokeStyle = 'rgba(139, 92, 246, 0.06)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        // Barra superior da janela (Header minimalista)
+        ctx.fillStyle = '#121216';
+        ctx.fillRect(0, 0, canvas.width, 46);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.beginPath(); ctx.moveTo(0, 46); ctx.lineTo(canvas.width, 46); ctx.stroke();
+
+        // Controles da janela (3 pontos minimalistas)
+        const dotColors = ['#3f3f46', '#52525b', '#8b5cf6'];
+        dotColors.forEach((color, idx) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(28 + idx * 20, 23, 5.5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Nome do arquivo na aba
+        ctx.fillStyle = '#a1a1aa';
+        ctx.font = '600 15px monospace';
+        ctx.fillText('engine.automation.ts', 110, 28);
+
+        // Badge de Status no canto superior direito
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.16)';
+        roundRect(ctx, 810, 11, 185, 24, 12, true, false);
+        ctx.fillStyle = '#c4b5fd';
+        ctx.font = 'bold 13px sans-serif';
+        ctx.fillText('● SISTEMA ATIVO 99.9%', 826, 27);
+
+        // Bloco Esquerdo: Código Limpo Estilizado (Roxo e Branco)
+        const codeLines = [
+          { num: '01', parts: [{ t: 'export async function ', c: '#8b5cf6' }, { t: 'escalarOperacao', c: '#ffffff' }, { t: '(negocio) {', c: '#a1a1aa' }] },
+          { num: '02', parts: [{ t: '  const ', c: '#8b5cf6' }, { t: 'rotinas = ', c: '#e4e4e7' }, { t: 'await ', c: '#a78bfa' }, { t: 'automatizarFluxos(negocio);', c: '#ffffff' }] },
+          { num: '03', parts: [{ t: '  const ', c: '#8b5cf6' }, { t: 'performance = ', c: '#e4e4e7' }, { t: 'otimizarCoreWebVitals();', c: '#c4b5fd' }] },
+          { num: '04', parts: [{ t: '', c: '#ffffff' }] },
+          { num: '05', parts: [{ t: '  if ', c: '#8b5cf6' }, { t: '(performance.score >= ', c: '#e4e4e7' }, { t: '99', c: '#a78bfa' }, { t: ') {', c: '#e4e4e7' }] },
+          { num: '06', parts: [{ t: '    return ', c: '#8b5cf6' }, { t: '{', c: '#a1a1aa' }] },
+          { num: '07', parts: [{ t: '      tempoPoupado: ', c: '#e4e4e7' }, { t: '"+18h/semana"', c: '#a78bfa' }, { t: ',', c: '#a1a1aa' }] },
+          { num: '08', parts: [{ t: '      conversao: ', c: '#e4e4e7' }, { t: '"+46.8%"', c: '#ffffff' }, { t: ',', c: '#a1a1aa' }] },
+          { num: '09', parts: [{ t: '      status: ', c: '#e4e4e7' }, { t: '"ALTA_ESCALA"', c: '#8b5cf6' }] },
+          { num: '10', parts: [{ t: '    };', c: '#a1a1aa' }] },
+          { num: '11', parts: [{ t: '  }', c: '#a1a1aa' }] },
+          { num: '12', parts: [{ t: '}', c: '#a1a1aa' }] }
+        ];
+
+        let startY = 98;
+        const lineHeight = 36;
+        codeLines.forEach((line) => {
+          // Número da linha
+          ctx.fillStyle = '#3f3f46';
+          ctx.font = '15px monospace';
+          ctx.fillText(line.num, 28, startY);
+
+          // Trechos coloridos
+          let currentX = 68;
+          line.parts.forEach((part) => {
+            ctx.fillStyle = part.c;
+            ctx.font = '600 16px monospace';
+            ctx.fillText(part.t, currentX, startY);
+            currentX += ctx.measureText(part.t).width;
+          });
+          startY += lineHeight;
+        });
+
+        // Linha divisória vertical entre código e painel de métricas
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.beginPath();
+        ctx.moveTo(645, 70);
+        ctx.lineTo(645, 580);
+        ctx.stroke();
+
+        // Painel Direito: Indicadores de Performance & Automação
+        // Card 1: Gráfico de Conversão
+        ctx.fillStyle = '#111115';
+        roundRect(ctx, 670, 80, 324, 230, 14, true, true, 'rgba(139, 92, 246, 0.35)');
+
+        ctx.fillStyle = '#a1a1aa';
+        ctx.font = '600 13px sans-serif';
+        ctx.fillText('TAXA DE CONVERSÃO', 692, 112);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 34px sans-serif';
+        ctx.fillText('+46.8%', 692, 152);
+
+        ctx.fillStyle = '#a78bfa';
+        ctx.font = '600 13px sans-serif';
+        ctx.fillText('▲ Eficiência comercial', 835, 148);
+
+        // Gráfico de linha ascendente roxo neon
+        const points = [
+          [692, 275], [735, 260], [778, 265], [820, 232],
+          [865, 220], [910, 190], [968, 175]
+        ];
+
+        // Área preenchida sob o gráfico
+        const grad = ctx.createLinearGradient(0, 175, 0, 285);
+        grad.addColorStop(0, 'rgba(139, 92, 246, 0.38)');
+        grad.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(points[0][0], 288);
+        points.forEach(p => ctx.lineTo(p[0], p[1]));
+        ctx.lineTo(points[points.length - 1][0], 288);
+        ctx.closePath();
+        ctx.fill();
+
+        // Linha principal do gráfico
+        ctx.strokeStyle = '#8b5cf6';
+        ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        points.forEach((p, i) => {
+          if (i === 0) ctx.moveTo(p[0], p[1]);
+          else ctx.lineTo(p[0], p[1]);
+        });
+        ctx.stroke();
+
+        // Ponto final brilhante
+        const lastP = points[points.length - 1];
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(lastP[0], lastP[1], 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Card 2: Performance Score & Automação
+        ctx.fillStyle = '#111115';
+        roundRect(ctx, 670, 332, 324, 245, 14, true, true, 'rgba(255, 255, 255, 0.08)');
+
+        ctx.fillStyle = '#a1a1aa';
+        ctx.font = '600 13px sans-serif';
+        ctx.fillText('PERFORMANCE & AUTOMAÇÃO', 692, 364);
+
+        // Barras de progresso minimalistas
+        const metrics = [
+          { label: 'Velocidade de Carregamento', val: '99/100', pct: 0.99 },
+          { label: 'Rotinas Automatizadas', val: '100%', pct: 1.0 },
+          { label: 'Redução de Trabalho Manual', val: '-78%', pct: 0.78 }
+        ];
+
+        let barY = 402;
+        metrics.forEach(m => {
+          ctx.fillStyle = '#e4e4e7';
+          ctx.font = '500 13px sans-serif';
+          ctx.fillText(m.label, 692, barY);
+
+          ctx.fillStyle = '#c4b5fd';
+          ctx.font = 'bold 13px monospace';
+          ctx.fillText(m.val, 918, barY);
+
+          // Trilho da barra
+          ctx.fillStyle = '#27272a';
+          roundRect(ctx, 692, barY + 10, 280, 8, 4, true, false);
+
+          // Preenchimento roxo
+          ctx.fillStyle = '#8b5cf6';
+          roundRect(ctx, 692, barY + 10, 280 * m.pct, 8, 4, true, false);
+
+          barY += 56;
+        });
+
+        // Rodapé interno da tela
+        ctx.fillStyle = '#121216';
+        ctx.fillRect(0, 606, canvas.width, 34);
+        ctx.fillStyle = '#71717a';
+        ctx.font = '13px monospace';
+        ctx.fillText('main*  |  TypeScript  |  Zero Gargalos', 28, 628);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        return texture;
+      }
+
+      // Helper para retângulos arredondados no Canvas 2D
+      function roundRect(ctx, x, y, width, height, radius, fill, stroke, strokeColor) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+        if (fill) ctx.fill();
+        if (stroke) {
+          ctx.strokeStyle = strokeColor || '#8b5cf6';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      }
+
+      // 4. Textura do Teclado Minimalista Dark
+      function createKeyboardTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 640;
+        const ctx = canvas.getContext('2d');
+
+        // Chassi metálico escuro
+        ctx.fillStyle = '#121215';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Área rebaixada do teclado
+        ctx.fillStyle = '#09090b';
+        roundRect(ctx, 64, 48, 896, 340, 14, true, true, 'rgba(139, 92, 246, 0.25)');
+
+        // Grade de teclas minimalistas com retroiluminação roxa sutil
+        const rows = 5;
+        const cols = 14;
+        const startX = 82;
+        const startY = 66;
+        const gap = 8;
+        const keyW = (896 - 36 - gap * (cols - 1)) / cols;
+        const keyH = (340 - 36 - gap * (rows - 1)) / rows;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            let w = keyW;
+            let x = startX + c * (keyW + gap);
+            const y = startY + r * (keyH + gap);
+
+            // Barra de espaço na última fileira
+            if (r === 4 && c >= 4 && c <= 9) {
+              if (c === 4) {
+                w = keyW * 6 + gap * 5;
+              } else {
+                continue;
+              }
+            }
+
+            ctx.fillStyle = '#18181b';
+            roundRect(ctx, x, y, w, keyH, 6, true, true, 'rgba(139, 92, 246, 0.22)');
+          }
+        }
+
+        // Trackpad amplo com contorno neon sutil
+        ctx.fillStyle = '#141418';
+        roundRect(ctx, 352, 416, 320, 190, 12, true, true, 'rgba(139, 92, 246, 0.3)');
+
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        return tex;
+      }
+
+      // 4.5 Textura Transparente em Alta Resolução da Logo na Tampa Traseira
+      function createBackLogoTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 1024;
+        const ctx = canvas.getContext('2d');
+
+        // Garante fundo 100% transparente para integrar direto no alumínio escuro
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cx = 512;
+        const cy = 500;
+
+        // Degradê fiel à logo enviada: Azul Ciano (#00b4ff) -> Roxo Neon (#9d4edd)
+        const logoGrad = ctx.createLinearGradient(250, 260, 770, 740);
+        logoGrad.addColorStop(0, '#00b4ff');
+        logoGrad.addColorStop(0.48, '#5a78f0');
+        logoGrad.addColorStop(1, '#9d4edd');
+
+        ctx.save();
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Brilho emissivo suave (glow)
+        ctx.shadowColor = 'rgba(125, 95, 255, 0.55)';
+        ctx.shadowBlur = 24;
+
+        // --- 1. Contorno do Balão de Chat Arredondado ---
+        // Desenhado em dois segmentos elegantes como na arte original (com abertura superior/inferior para a barra central e cursor)
+        ctx.strokeStyle = logoGrad;
+        ctx.lineWidth = 34;
+
+        // Lado esquerdo do balão + ponta inferior do balão de fala
+        ctx.beginPath();
+        ctx.moveTo(492, 285); // Topo centro-esquerda
+        ctx.lineTo(355, 285);
+        ctx.quadraticCurveTo(265, 285, 265, 375);
+        ctx.lineTo(265, 535);
+        ctx.quadraticCurveTo(265, 625, 355, 625);
+        ctx.lineTo(368, 625);
+        // Ponta do balão de chat
+        ctx.lineTo(368, 705);
+        ctx.lineTo(458, 625);
+        ctx.lineTo(548, 625);
+        ctx.stroke();
+
+        // Lado direito do balão conectado com a barra inclinada "/" do centro
+        ctx.beginPath();
+        ctx.moveTo(468, 625); // Base da barra diagonal "/"
+        ctx.lineTo(556, 335); // Sobe formando a diagonal "/"
+        ctx.quadraticCurveTo(572, 285, 625, 285);
+        ctx.lineTo(669, 285);
+        ctx.quadraticCurveTo(759, 285, 759, 375);
+        ctx.lineTo(759, 515);
+        ctx.stroke();
+
+        // --- 2. Símbolos "<" e ">" internos ---
+        ctx.lineWidth = 32;
+
+        // Seta esquerda "<"
+        ctx.beginPath();
+        ctx.moveTo(432, 405);
+        ctx.lineTo(358, 458);
+        ctx.lineTo(432, 511);
+        ctx.stroke();
+
+        // Seta direita ">"
+        ctx.beginPath();
+        ctx.moveTo(592, 405);
+        ctx.lineTo(666, 458);
+        ctx.lineTo(592, 511);
+        ctx.stroke();
+
+        // --- 3. Cursor de Seta Roxo no Canto Inferior Direito ---
+        // Recorte escuro sutil atrás do cursor para dar profundidade sobre o contorno
+        const cursorPath = new Path2D();
+        cursorPath.moveTo(602, 545); // Ponta superior esquerda do cursor
+        cursorPath.lineTo(772, 608); // Asa direita
+        cursorPath.lineTo(704, 638); // Recuo interno direito
+        cursorPath.lineTo(754, 692); // Base direita da haste
+        cursorPath.lineTo(718, 726); // Base esquerda da haste
+        cursorPath.lineTo(668, 672); // Recuo interno esquerdo
+        cursorPath.lineTo(634, 736); // Asa inferior esquerda
+        cursorPath.closePath();
+
+        // Contorno escuro de separação (efeito camada 3D)
+        ctx.save();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = '#111116';
+        ctx.lineWidth = 22;
+        ctx.stroke(cursorPath);
+        ctx.restore();
+
+        // Preenchimento do cursor em degradê roxo vibrante
+        const cursorGrad = ctx.createLinearGradient(602, 545, 765, 725);
+        cursorGrad.addColorStop(0, '#7b4ce2');
+        cursorGrad.addColorStop(1, '#9d4edd');
+        ctx.fillStyle = cursorGrad;
+        ctx.fill(cursorPath);
+
+        ctx.restore();
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        return texture;
+      }
+
+      // 5. Construção do Modelo 3D do Notebook
+      const laptopGroup = new THREE.Group();
+      scene.add(laptopGroup);
+
+      // Materiais
+      const bodyMaterial = new THREE.MeshStandardMaterial({
+        color: 0x111116, // Alumínio escuro fosco #111116
+        metalness: 0.85,
+        roughness: 0.30
+      });
+
+      const darkTrimMaterial = new THREE.MeshStandardMaterial({
+        color: 0x09090b,
+        metalness: 0.5,
+        roughness: 0.4
+      });
+
+      const neonEdgeMaterial = new THREE.MeshBasicMaterial({
+        color: 0x8b5cf6
+      });
+
+      const screenTexture = createScreenTexture();
+      const screenMaterial = new THREE.MeshBasicMaterial({
+        map: screenTexture
+      });
+
+      const keyboardTexture = createKeyboardTexture();
+      const topBaseMaterial = new THREE.MeshStandardMaterial({
+        map: keyboardTexture,
+        metalness: 0.6,
+        roughness: 0.45
+      });
+
+      // Dimensões proporcionais (estilo ultrabook moderno 16:10)
+      const width = 3.1;
+      const depth = 2.1;
+      const baseHeight = 0.085;
+      const lidThickness = 0.055;
+
+      // --- BASE DO NOTEBOOK ---
+      const baseGroup = new THREE.Group();
+      laptopGroup.add(baseGroup);
+
+      // Corpo principal da base (com textura do teclado no topo)
+      const baseMaterials = [
+        bodyMaterial,    // direita
+        bodyMaterial,    // esquerda
+        topBaseMaterial, // topo (teclado + trackpad)
+        bodyMaterial,    // fundo
+        bodyMaterial,    // frente
+        bodyMaterial     // trás
+      ];
+      const baseGeo = new THREE.BoxGeometry(width, baseHeight, depth);
+      const baseMesh = new THREE.Mesh(baseGeo, baseMaterials);
+      baseGroup.add(baseMesh);
+
+      // Filete neon roxo sutil contornando a base
+      const baseNeonGeo = new THREE.EdgesGeometry(new THREE.BoxGeometry(width + 0.006, baseHeight * 0.4, depth + 0.006));
+      const baseNeonLines = new THREE.LineSegments(
+        baseNeonGeo,
+        new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.65 })
+      );
+      baseNeonLines.position.y = -0.01;
+      baseGroup.add(baseNeonLines);
+
+      // --- TAMPA / TELA DO NOTEBOOK ---
+      // Pivô posicionado exatamente na dobradiça traseira
+      const lidPivot = new THREE.Group();
+      lidPivot.position.set(0, baseHeight / 2, -depth / 2 + 0.02);
+      laptopGroup.add(lidPivot);
+
+      // Carcaça metálica da tampa
+      const lidGeo = new THREE.BoxGeometry(width, depth, lidThickness);
+      const lidMesh = new THREE.Mesh(lidGeo, bodyMaterial);
+      lidMesh.position.set(0, depth / 2, 0);
+      lidPivot.add(lidMesh);
+
+      // Moldura interna preta fina (bezel)
+      const bezelGeo = new THREE.PlaneGeometry(width - 0.08, depth - 0.08);
+      const bezelMesh = new THREE.Mesh(bezelGeo, darkTrimMaterial);
+      bezelMesh.position.set(0, depth / 2, lidThickness / 2 + 0.002);
+      lidPivot.add(bezelMesh);
+
+      // Display ativo com código e métricas
+      const displayGeo = new THREE.PlaneGeometry(width - 0.16, depth - 0.18);
+      const displayMesh = new THREE.Mesh(displayGeo, screenMaterial);
+      displayMesh.position.set(0, depth / 2 + 0.01, lidThickness / 2 + 0.004);
+      lidPivot.add(displayMesh);
+
+      // Borda neon roxa sutil ao redor da tampa
+      const lidEdgesGeo = new THREE.EdgesGeometry(lidGeo);
+      const lidEdges = new THREE.LineSegments(
+        lidEdgesGeo,
+        new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.55 })
+      );
+      lidEdges.position.copy(lidMesh.position);
+      lidPivot.add(lidEdges);
+
+      // Logo personalizada na tampa traseira externa (fundo transparente integrado ao alumínio)
+      const backLogoTexture = createBackLogoTexture();
+      const backLogoGeo = new THREE.PlaneGeometry(1.12, 1.12);
+      const backLogoMat = new THREE.MeshBasicMaterial({
+        map: backLogoTexture,
+        transparent: true,
+        depthWrite: false
+      });
+      const backLogoMesh = new THREE.Mesh(backLogoGeo, backLogoMat);
+      // Rotaciona 180° no eixo Y para ficar orientada corretamente na face traseira da tampa
+      backLogoMesh.rotation.y = Math.PI;
+      backLogoMesh.position.set(0, depth / 2 + 0.02, -lidThickness / 2 - 0.003);
+      lidPivot.add(backLogoMesh);
+
+      // Ângulo de abertura natural do notebook (~108 graus)
+      lidPivot.rotation.x = -0.30;
+      // 6. Interação Opcional com Mouse/Toque e Botões de Controle
+      let isDragging = false;
+      let isAutoRotating = true;
+      let targetRotationY = null;
+      let previousMouseX = 0;
+      let userRotationOffset = 0;
+
+      const btnAuto = document.getElementById('btn-auto');
+      const btnBack = document.getElementById('btn-back');
+
+      if (btnAuto && btnBack) {
+        btnAuto.addEventListener('click', (e) => {
+          e.stopPropagation();
+          isAutoRotating = true;
+          targetRotationY = null;
+          btnAuto.classList.add('active');
+          btnBack.classList.remove('active');
+        });
+
+        btnBack.addEventListener('click', (e) => {
+          e.stopPropagation();
+          isAutoRotating = false;
+          // Calcula o ângulo múltiplo mais próximo de Math.PI (tampa traseira virada para a câmera)
+          const current = laptopGroup.rotation.y;
+          const revolutions = Math.round((current - Math.PI) / (Math.PI * 2));
+          targetRotationY = revolutions * (Math.PI * 2) + Math.PI;
+          btnBack.classList.add('active');
+          btnAuto.classList.remove('active');
+        });
+      }
+
+      const onPointerDown = (e) => {
+        if (e.target.closest('.viewer-controls')) return;
+        isDragging = true;
+        targetRotationY = null;
+        previousMouseX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      };
+
+      const onPointerMove = (e) => {
+        if (!isDragging) return;
+        const currentX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+        const deltaX = currentX - previousMouseX;
+        userRotationOffset += deltaX * 0.008;
+        previousMouseX = currentX;
+      };
+
+      const onPointerUp = () => {
+        isDragging = false;
+      };
+
+      container.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      container.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp);
+
+      // 7. Responsividade Dinâmica
+      function handleResize() {
+        if (!container) return;
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+
+        // Ajusta distância da câmera em telas estreitas para nunca cortar o notebook
+        camera.position.z = w < 520 ? 7.2 : 6.4;
+        laptopGroup.scale.set(0.85, 0.85, 0.85);
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      window.addEventListener('resize', handleResize);
+      handleResize();
+
+      // 8. Loop de Animação Contínuo (360° Suave + Flutuação Leve)
+      const clock = new THREE.Clock();
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const elapsedTime = clock.getElapsedTime();
+
+        // Controle de rotação: Arraste manual, foco na traseira ou looping 360° automático
+        if (isDragging) {
+          laptopGroup.rotation.y += userRotationOffset;
+          userRotationOffset *= 0.85;
+        } else if (targetRotationY !== null) {
+          laptopGroup.rotation.y += (targetRotationY - laptopGroup.rotation.y) * 0.08;
+        } else if (isAutoRotating) {
+          laptopGroup.rotation.y += 0.0065;
+        }
+
+        // Flutuação vertical sutil ("levitação")
+        laptopGroup.position.y = -0.55 + Math.sin(elapsedTime * 1.6) * 0.065;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101321"/><stop offset="1" stop-color="#232747"/></linearGradient><linearGradient id="violet" x2="1" y2="1"><stop stop-color="#c1b2ff"/><stop offset="1" stop-color="#7654e8"/></linearGradient></defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <circle cx="886" cy="324" r="248" fill="#8064ec" opacity=".12"/>
+  <circle cx="886" cy="324" r="172" fill="none" stroke="#c1b2ff" stroke-opacity=".35"/>
+  <circle cx="886" cy="324" r="115" fill="none" stroke="#c1b2ff" stroke-opacity=".35" stroke-dasharray="4 10"/>
+  <rect x="763" y="201" width="246" height="246" rx="38" fill="url(#violet)" transform="rotate(-12 886 324)"/>
+  <text x="83" y="100" fill="#ece9ff" font-family="Arial,sans-serif" font-size="24" letter-spacing="3">NORTE / DIGITAL</text>
+  <text x="84" y="295" fill="#fff" font-family="Arial,sans-serif" font-size="68" font-weight="500">Mais clareza.</text>
+  <text x="84" y="373" fill="#c2bfe0" font-family="Arial,sans-serif" font-size="68" font-weight="500">Melhores escolhas.</text>
+  <text x="88" y="430" fill="#aaa9c2" font-family="Arial,sans-serif" font-size="19">Estratégia para marcas prontas para avançar.</text>
+  <rect x="84" y="481" width="191" height="54" rx="5" fill="#c9bbff"/>
+  <text x="106" y="515" fill="#1c1730" font-family="Arial,sans-serif" font-size="16">Vamos conversar ↗</text>
+  <text x="85" y="672" fill="#88869e" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">ESTRATÉGIA · DESIGN · CRESCIMENTO</text>
+</svg>

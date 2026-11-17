@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0b0f">
+    <meta name="description" content="Portfólio de Carlos, desenvolvedor front-end. Interfaces cuidadosas, sites responsivos e experiências digitais feitas para pessoas.">
+    <title>Conversa Digital</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/projects.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+    <header class="site-header" id="topo">
+      <div class="container header-inner">
+        <a class="wordmark" href="#inicio" aria-label="Carlos — início">Conversa <span>Digital</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menu">
+          <span></span><span></span>
+        </button>
+        <nav class="primary-nav" id="primary-nav" aria-label="Navegação principal">
+          <a href="#inicio">Início</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="header-cta" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section-pad" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            
+            <h1 class="hero-title reveal" id="hero-title">Transformando códigos em <span>experiências digitais.</span></h1>
+            <p class="hero-description reveal">Muito além do visual: aplicações web rápidas e intuitivas que automatizam rotinas e aumentam a conversão do seu negócio.</p>
+            <div class="hero-actions reveal">
+              <a class="button button-primary" href="#projetos">Explorar portfólio <span aria-hidden="true">↘</span></a>
+              <a class="button button-quiet" href="#contato">Entrar em contato <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <div class="hero-aside reveal">
+            <iframe
+              src="assets/notebook_3d_dark_mode.html"
+              title="Notebook 3D interativo. Use os controles para girar automaticamente ou visualizar a logo traseira."
+              loading="eager"
+              sandbox="allow-scripts"
+              allowtransparency="true"
+            ></iframe>
+          </div>
+        </div>
+        <div class="container hero-bottom">
+          <span class="mono-label">Desenvolvedor · SC-BRASIL</span>
+          <a class="scroll-cue" href="#projetos"><span class="scroll-line"></span> Role para explorar</a>
+        </div>
+      </section>
+
+      <section class="projects-section section-pad" id="projetos" aria-labelledby="projects-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="eyebrow">TRABALHOS SELECIONADOS</p>
+              <h2 class="section-title" id="projects-title">Últimos projetos <span> em destaque.</span></h2>
+            </div>
+            <p class="section-intro">Uma seleção de interfaces pensadas nos detalhes — da primeira ideia ao último pixel.</p>
+          </div>
+          <div class="filter-row reveal" role="group" aria-label="Filtrar projetos por categoria">
+            <button class="filter-button is-active" type="button" data-filter="todos" aria-pressed="true">Todos <span data-filter-count="todos"></span></button>
+            <button class="filter-button" type="button" data-filter="institucional" aria-pressed="false">Sites institucionais <span data-filter-count="institucional"></span></button>
+            <button class="filter-button" type="button" data-filter="landing" aria-pressed="false">Landing pages <span data-filter-count="landing"></span></button>
+            <button class="filter-button" type="button" data-filter="experimental" aria-pressed="false">Experimentais <span data-filter-count="experimental"></span></button>
+          </div>
+          <div class="project-grid" id="project-grid" aria-live="polite"></div>
+          <p class="project-note">Exemplos de aplicações e interfaces projetadas sob medida para otimizar processos, escalar operações e elevar a presença digital.</p>
+        </div>
+      </section>
+
+      <section class="about-section section-pad" id="sobre" aria-labelledby="about-title">
+        <div class="container about-layout">
+          <div class="about-heading reveal">
+            <p class="eyebrow">SOBRE </p>
+            <h2 class="section-title" id="about-title">Tecnologia com um olhar <span>humano.</span></h2>
+          </div>
+          <div class="about-content reveal">
+            <p class="about-lead">À frente da Conversa Digital, transformo ideias em sites, landing pages e sistemas personalizados que geram resultados reais.</p>
+            <p class="about-copy">"Trabalho da estrutura à interação, unindo código limpo, design estratégico e foco total na experiência de quem está do outro lado da tela. Cada projeto é desenvolvido sob medida para dar voz e presença digital ao seu negócio.</p>
+          <div class="skills-list" aria-label="Áreas de atuação">
+              <span>Software as a Service</span><span>HTML, CSS &amp; JavaScript</span><span>Design responsivo</span><span>Experiência do usuário</span><span>Three.js</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section section-pad" id="contato" aria-labelledby="contact-title">
+        <div class="container contact-panel reveal">
+          <div class="contact-copy">
+            <p class="eyebrow">PRÓXIMO PASSO</p>
+            <h2 class="section-title" id="contact-title">Tem uma ideia? <span>Vamos construir.</span></h2>
+            <p>Estou aberto a conversas, colaborações e novos projetos. Me conte o que você está imaginando.</p>
+          </div>
+          <a class="button button-primary contact-button" data-contact-whatsapp href="https://wa.me/message/CTZ6PGDLKQ3OL1" target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="container contact-footer">
+          <span class="mono-label">FEITO COM CURIOSIDADE E CAFÉ.</span>
+          <div class="social-links">
+            <a data-social="instagram" href="https://www.instagram.com/_conversadigital" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+            <a data-social="linkedin" href="https://www.linkedin.com/in/conversadigital" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="#topo">Voltar ao topo <span aria-hidden="true">↑</span></a>
+          </div>
+          <span class="copyright">© <span id="current-year"></span> Conversa Digital</span>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow" id="dialog-category"></p>
+            <h2 id="dialog-title"></h2>
+          </div>
+          <button class="dialog-close" type="button" aria-label="Fechar visualização">×</button>
+        </div>
+        <p class="dialog-description" id="dialog-description"></p>
+        <div class="dialog-tags" id="dialog-technologies"></div>
+        <div class="preview-frame" id="preview-container">
+          <iframe title="Pré-visualização do projeto" id="project-frame" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <p class="preview-fallback" id="preview-fallback">Se a pré-visualização não carregar, abra o projeto em uma nova aba.</p>
+        </div>
+        <div class="dialog-actions">
+          <a class="button button-primary" id="dialog-open-link" href="#" target="_blank" rel="noopener noreferrer">Abrir projeto em nova aba <span aria-hidden="true">↗</span></a>
+          <a class="button button-quiet is-hidden" id="dialog-github-link" href="#" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: #242323; font: 15px/1.6 Inter, Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+.demo-wrap { width: min(1120px, calc(100% - 48px)); margin: auto; }
+.demo-nav { display: flex; height: 75px; align-items: center; justify-content: space-between; font-size: 13px; }
+.demo-logo { font-size: 19px; font-weight: 700; letter-spacing: -.06em; }
+.demo-nav-links { display: flex; gap: 25px; color: #696962; font-size: 11px; }
+.demo-hero { position: relative; display: flex; min-height: 480px; align-items: center; overflow: hidden; padding: 70px; border-radius: 6px; background: #d3d0c4; }
+.demo-hero-copy { position: relative; z-index: 1; max-width: 550px; }
+.demo-kicker { font: 10px "Courier New", monospace; letter-spacing: .16em; text-transform: uppercase; }
+.demo-title { margin: 19px 0; font-size: clamp(42px, 6vw, 72px); font-weight: 500; letter-spacing: -.07em; line-height: .98; }
+.demo-description { max-width: 410px; color: #67665f; font-size: 14px; }
+.demo-button { display: inline-flex; margin-top: 15px; padding: 13px 17px; border-radius: 3px; background: #242323; color: white; font-size: 11px; }
+.demo-visual { position: absolute; top: 50%; right: 7%; display: grid; width: 36%; aspect-ratio: 1; place-items: center; border-radius: 50%; background: rgba(67,74,60,.2); transform: translateY(-50%); }
+.demo-visual::before, .demo-visual::after { position: absolute; width: 65%; height: 65%; border: 1px solid rgba(255,255,255,.62); border-radius: 50%; content: ""; }
+.demo-visual::after { width: 42%; height: 42%; background: rgba(255,255,255,.45); }
+.demo-section { padding: 70px 0; }
+.demo-section h2 { margin: 0 0 12px; font-size: 30px; font-weight: 500; letter-spacing: -.05em; }
+.demo-section p { max-width: 600px; color: #75736e; font-size: 13px; }
+.demo-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+.demo-tile { min-height: 115px; padding: 20px; border: 1px solid rgba(0,0,0,.1); border-radius: 5px; background: rgba(255,255,255,.35); }
+.demo-tile strong { display: block; margin-bottom: 5px; font-size: 13px; }
+.demo-tile span { color: #77756e; font-size: 11px; }
+.demo-footer { padding: 20px 0 35px; border-top: 1px solid rgba(0,0,0,.1); color: #77756e; font-size: 10px; }
+.theme-norte { color: #f4f2ff; background: #131522; }
+.theme-norte .demo-nav-links, .theme-norte .demo-description, .theme-norte .demo-section p, .theme-norte .demo-footer { color: #aaa9bd; }
+.theme-norte .demo-hero { background: linear-gradient(115deg, #242640, #242047 55%, #3b2b65); }
+.theme-norte .demo-button { background: #c1aeff; color: #201a34; }
+.theme-norte .demo-visual { border-radius: 42% 58% 63% 37%; background: linear-gradient(140deg, #c1aeff, #7047db); box-shadow: 0 0 90px #855dee66; transform: translateY(-50%) rotate(18deg); }
+.theme-norte .demo-visual::before { width: 78%; height: 78%; }
+.theme-norte .demo-visual::after { background: #242047; }
+.theme-norte .demo-tile { border-color: #ffffff20; background: #ffffff08; }
+.theme-forma { color: #f3f2ea; background: #151515; }
+.theme-forma .demo-nav-links, .theme-forma .demo-description, .theme-forma .demo-section p, .theme-forma .demo-footer { color: #999991; }
+.theme-forma .demo-hero { background: #22231f; }
+.theme-forma .demo-title span { color: #d9ff59; }
+.theme-forma .demo-button { background: #d9ff59; color: #161713; }
+.theme-forma .demo-visual { border-radius: 50%; background: #d9ff59; }
+.theme-forma .demo-visual::before { width: 72%; height: 72%; border-color: #24251f; }
+.theme-forma .demo-visual::after { width: 43%; height: 43%; background: #ff735b; }
+.theme-forma .demo-tile { border-color: #ffffff1a; background: #ffffff08; }
+@media (max-width: 650px) {
+  .demo-wrap { width: calc(100% - 28px); }
+  .demo-nav { height: 58px; }
+  .demo-nav-links { gap: 12px; font-size: 9px; }
+  .demo-hero { min-height: 500px; align-items: start; padding: 44px 25px; }
+  .demo-title { font-size: 49px; }
+  .demo-visual { top: auto; right: 8%; bottom: -62px; width: 48%; transform: none; }
+  .theme-norte .demo-visual { transform: rotate(18deg); }
+  .demo-section { padding: 48px 0; }
+  .demo-columns { grid-template-columns: 1fr; }
+}

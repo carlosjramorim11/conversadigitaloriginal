@@ -1,0 +1,463 @@
+/* ==========================================================================
+   PREFIXO E VARIÁVEIS DO DESIGN SYSTEM (PREMIUM SPORTS)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,300&family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+    /* Paleta de Cores Oficial */
+    --bg-main: #050505;
+    --bg-card: #111111;
+    --color-accent: #00D4FF;
+    --color-secondary: #0066FF;
+    --text-main: #FFFFFF;
+    --text-muted: #CFCFCF;
+    
+    /* Gradientes de Alto Desempenho */
+    --gradient-primary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 0.95) 100%);
+    --gradient-sport: linear-gradient(45deg, rgba(0, 102, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 100%);
+
+    /* Tipografia */
+    --font-display: 'Montserrat', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Efeitos Glassmorphism e Transições */
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-border-hover: rgba(0, 212, 255, 0.3);
+    --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.25);
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GERAIS DE PERFORMANCE
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+body {
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .nav-logo, .stat-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+}
+
+/* ==========================================================================
+   HEADER / MENU NAV
+   ========================================================================== */
+.premium-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover, .nav-links .active {
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   HERO SECTION (INSPIRAÇÃO NIKE WOMEN / OLYMPICS)
+   ========================================================================== */
+.hero-fullscreen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--bg-main);
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    z-index: 1;
+    will-change: transform;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-overlay);
+    z-index: 2;
+}
+
+.hero-sport-gradient {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-sport);
+    z-index: 3;
+    mix-blend-mode: color-dodge;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 1.5rem;
+}
+
+.hero-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.9;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #FFFFFF 40%, #A0A0A0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   BOTÕES COM EMISSÃO DE SINAL (GLOW)
+   ========================================================================== */
+.btn-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--text-main);
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-premium::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: 6px;
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-premium:hover::after {
+    opacity: 1;
+    filter: blur(8px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-accent);
+    background: rgba(0, 212, 255, 0.05);
+    box-shadow: none;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+/* ==========================================================================
+   CARDS MODERNOS (GLASSMORPHISM & HIGH-PERFORMANCE HOVER)
+   ========================================================================== */
+.section-padding {
+    padding: 8rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.premium-card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    will-change: transform, border-color;
+}
+
+/* Hover de elevação limpa sem travar a renderização */
+.premium-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* Detalhe sutil de assinatura do card */
+.premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.premium-card:hover::before {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   GALERIA MASONRY COM CONTROLE DE EVENTO DE IMAGEM
+   ========================================================================== */
+.gallery-masonry {
+    columns: 4 280px;
+    column-gap: 1.25rem;
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+    backface-visibility: hidden; /* Força aceleração de hardware 3D no Mobile */
+    will-change: transform;
+}
+
+/* Hover Zoom de Alta Performance */
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Overlay sutil na galeria */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0) 50%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* Lightbox Base (Otimizado estruturalmente) */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.95);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES NATIVAS CSS (PERFORMANCE LIGHTHOUSE LIGADA)
+   ========================================================================== */
+.animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-left {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-right {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: fadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   ESTRUTURA DE RESPONSIVIDADE ULTRA-FLUIDA
+   ========================================================================== */
+
+/* Tablets e Telas Médias (Até 1024px) */
+@media (max-width: 1024px) {
+    html { font-size: 15px; }
+    
+    .section-padding { padding: 6rem 1.5rem; }
+    
+    .nav-links { gap: 1.5rem; }
+    
+    .gallery-masonry {
+        columns: 3 240px;
+    }
+}
+
+/* Mobile Avançado (Até 768px) */
+@media (max-width: 768px) {
+    html { font-size: 14px; }
+
+    .nav-links {
+        display: none; /* Ideal para acionar o gatilho JS de menu hambúrguer */
+    }
+
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-premium {
+        width: 100%;
+    }
+
+    .gallery-masonry {
+        columns: 2 160px;
+        column-gap: 0.85rem;
+    }
+    
+    .gallery-item {
+        margin-bottom: 0.85rem;
+    }
+    
+    .premium-card {
+        padding: 1.75rem;
+    }
+}
+
+/* Mobile Extremo (Até 480px) */
+@media (max-width: 480px) {
+    .gallery-masonry {
+        columns: 1 100%;
+    }
+}
+
+/* Redução de Movimento (Acessibilidade e otimização sob demanda do SO) */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: scroll !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+    }
+}

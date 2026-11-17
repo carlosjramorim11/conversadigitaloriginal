@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia Amorim | ABC Vôlei</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B132B',
+                            navy: '#1C2541',
+                            blue: '#3A506B',
+                            gold: '#D4AF37',
+                            accent: '#F1C40F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-brand-dark font-sans antialiased">
+
+    <!-- HEADER -->
+<header class="fixed w-full z-50 bg-brand-dark/95 backdrop-blur-sm text-white shadow-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <a href="#inicio" class="flex items-center gap-3">
+            <div class="w-11 h-11 bg-white rounded-full flex items-center justify-center overflow-hidden p-0.5 shadow-md border border-white/10">
+                <img src="sofia trofeu linda.jpeg" alt="Logo ABC Vôlei" class="w-full h-full object-contain rounded-full">
+            </div>
+            <span class="font-bold text-lg tracking-wider uppercase hidden sm:block">Sofia Amorim</span>
+        </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm uppercase tracking-wider">
+                <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
+                <a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre</a>
+                <a href="#conquistas" class="hover:text-brand-gold transition-colors">Conquistas</a>
+                <a href="#galeria" class="hover:text-brand-gold transition-colors">Galeria</a>
+                <a href="#patrocinio" class="hover:text-brand-gold transition-colors">Patrocínio</a>
+                <a href="#contato" class="bg-brand-gold text-brand-dark px-4 py-2 rounded-full hover:bg-white hover:text-brand-dark transition-all duration-300 shadow">Contato</a>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-navy border-t border-brand-blue/30 px-4 py-6 space-y-4 text-center font-semibold uppercase text-sm">
+            <a href="#inicio" class="block py-2 hover:text-brand-gold">Início</a>
+            <a href="#sobre" class="block py-2 hover:text-brand-gold">Sobre</a>
+            <a href="#conquistas" class="block py-2 hover:text-brand-gold">Conquistas</a>
+            <a href="#galeria" class="block py-2 hover:text-brand-gold">Galeria</a>
+            <a href="#patrocinio" class="block py-2 hover:text-brand-gold">Patrocínio</a>
+            <a href="#contato" class="block bg-brand-gold text-brand-dark py-2 rounded-md max-w-xs mx-auto">Contato</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION FULLSCREEN -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center text-white overflow-hidden bg-[#050505]">
+    
+    <img src="e toma le corte.jpeg" alt="Sofia Amorim em quadra" class="absolute top-0 left-0 w-full h-full object-cover object-center z-1">
+    
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-[#050505] z-2"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/10 to-[#00D4FF]/5 mix-blend-color-dodge z-3"></div>
+
+    <div class="relative z-4 text-center max-w-4xl mx-auto px-4 space-y-6">
+        <span class="inline-block bg-[#00D4FF]/10 text-[#00D4FF] font-bold uppercase tracking-widest text-xs sm:text-sm px-4 py-1.5 rounded-full border border-[#00D4FF]/30">
+            Associação de Balneário Camboriú
+        </span>
+        
+        <h1 class="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight uppercase italic text-white drop-shadow-lg">
+            Sofia Amorim
+        </h1>
+        
+        <p class="text-xl sm:text-2xl font-semibold text-[#CFCFCF] tracking-wide">
+            Jogadora de Voleibol | <span class="text-[#00D4FF]">ABC Vôlei</span>
+        </p>
+        
+        <div class="w-24 h-1 bg-gradient-to-r from-[#0066FF] to-[#00D4FF] mx-auto my-4 rounded-full"></div>
+        
+        <p class="text-lg sm:text-xl italic text-[#CFCFCF] max-w-2xl mx-auto font-light">
+            Construindo minha história ponto a ponto, com dedicação e paixão pelo voleibol.
+        </p>
+        
+        <div class="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="#sobre" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/30 hover:border-[#00D4FF] hover:bg-[#00D4FF]/10 font-bold uppercase text-sm tracking-wider rounded-md transition-all duration-300">
+                Conheça minha trajetória
+            </a>
+            <a href="#patrocinio" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#0066FF] to-[#00D4FF] text-white font-bold uppercase text-sm tracking-wider rounded-md transition-all duration-300 shadow-lg shadow-[#0066FF]/20 hover:shadow-[#00D4FF]/40 transform hover:-translate-y-0.5">
+                Seja um patrocinador
+            </a>
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center animate-bounce z-4">
+        <a href="#sobre" aria-label="Rolar para baixo">
+            <i class="fa-solid fa-chevron-down text-2xl text-[#CFCFCF] hover:text-[#00D4FF]"></i>
+        </a>
+    </div>
+</section>
+
+    <!-- SOBRE A ATLETA -->
+    <section id="sobre" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:text-left mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">conheça Sofia</h2>
+                <div class="w-16 h-1 bg-brand-gold mt-3 mx-auto md:mx-0 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Foto da Atleta -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative group max-w-md w-full">
+                        <div class="absolute -inset-2 bg-gradient-to-r border border-brand-gold/30 rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <img src="sofia cortando.jpeg" alt="Foto da Atleta" class="relative rounded-xl shadow-2xl object-cover w-full h-[500px] bg-brand-navy">
+                    </div>
+                </div>
+
+                <!-- Informações e Texto -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- Ficha Técnica -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-gray-50 p-6 rounded-2xl border border-gray-100 shadow-sm">
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Cidade</p>
+                            <p class="font-semibold text-brand-dark">Balneário Camboriú - SC</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Clube</p>
+                            <p class="font-semibold text-brand-dark">ABC Vôlei</p>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Categoria</p>
+                            <p class="font-semibold text-brand-dark">[Inserir Ex: Sub-19]</p>
+                        </div>
+                        <div class="pt-2">  
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Posição</p>
+                            <p class="font-semibold text-brand-dark">Central</p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Altura</p>
+                            <p class="font-semibold text-brand-dark"> 1,76  </p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracSking-wider">Idade</p>
+                            <p class="font-semibold text-brand-dark">16 anos </p>
+                        </div>
+                        <div class="pt-2 sm:col-span-3">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Alcance de Bloqueio</p>
+                            <p class="font-semibold text-brand-dark">2,0</p>
+                        </div>
+                    </div>
+
+                    <!-- Texto de Trajetória -->
+                    <div class="space-y-4 text-gray-600 leading-relaxed text-lg">
+                        <p>
+                            Nascida em Navegantes, Sofia Amorim encontrou no voleibol muito mais do que um esporte: uma paixão que se transformou em propósito. Desde cedo, dedicou-se intensamente às quadras, desenvolvendo disciplina, comprometimento e uma mentalidade competitiva que a destacam entre os talentos da nova geração do voleibol catarinense.
+                        <p>
+                            Ao longo das últimas temporadas, conquistei títulos fundamentais em níveis estadual e nacional, enfrentando as principais potências do vôlei de base do Brasil. Minha evolução técnica é constante, focada em metas de alto rendimento para contribuir de forma decisiva tanto em campeonatos de base quanto em futuras transições profissionais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONQUISTAS -->
+    <section id="conquistas" class="py-24 bg-brand-navy text-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">Galeria de troféus</h2>
+                <p class="text-brand-gold font-semibold mt-2">Mais do que medalhas: momentos que contam nossa história.</p>
+                <div class="w-16 h-1 bg-brand-gold mt-3 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Grid de Cards de Conquistas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Ouro Grupo -->
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Olimpíada Estudantil Catarinense 2025</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Campeonato Brasileiro Inerclubes Sub-17 Acesso A (GO)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Campeonato Brasileiro Inerclubes Sub-19 Acesso B</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Copa Catarina Sub-15 <span class="text-sm font-normal text-gray-400">(Série Prata)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Taça Paraná Sub-14 (PR) <span class="text-sm font-normal text-gray-400">(Série Prata)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Estaduais Sub-14 <span class="text-sm font-normal text-gray-400">(Série Prata)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-500 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-amber-500 mt-1"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-500">1º Lugar - Campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Campeonato Estrela Sub-19 <span class="text-sm font-normal text-gray-400">(2026 - RS)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prata Grupo -->
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Estaduais Sub-15</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Mercosul Sub-16 (RS)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Liga Catarinense Sub-16</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Liga Catarinense Sub-17</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Estaduais Sub-17</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-slate-400 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl text-slate-400 mt-1"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">2º Lugar - Vice-campeã</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Olimpíada Estudantil Catarinense Regional</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bronze Grupo -->
+                <div class="bg-brand-dark/50 border-l-4 border-amber-750 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300" style="border-left-color: #CD7F32;">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl mt-1" style="color: #CD7F32;"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: #CD7F32;">3º Lugar</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Jogos Escolares Brasileiros Sub-18</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-750 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300" style="border-left-color: #CD7F32;">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl mt-1" style="color: #CD7F32;"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: #CD7F32;">3º Lugar</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Campeonato Estrela (RS) <span class="text-sm font-normal text-gray-400">(Série Ouro)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-750 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300" style="border-left-color: #CD7F32;">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl mt-1" style="color: #CD7F32;"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: #CD7F32;">3º Lugar</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Jogos Escolares de Santa Catarina 15 a 17 <span class="text-sm font-normal text-gray-400">(2025)</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-750 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300" style="border-left-color: #CD7F32;">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl mt-1" style="color: #CD7F32;"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: #CD7F32;">3º Lugar</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Liga Catarinense Sub-15</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-dark/50 border-l-4 border-amber-750 p-6 rounded-r-xl shadow-lg hover:transform hover:-translate-y-1 transition-all duration-300" style="border-left-color: #CD7F32;">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl mt-1" style="color: #CD7F32;"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider" style="color: #CD7F32;">3º Lugar</span>
+                            <h3 class="text-lg font-bold mt-1 text-gray-100">Liga Catarinense Sub-14</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTATÍSTICAS -->
+    <section class="py-16 bg-brand-gold text-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <!-- Nota: Contadores estáticos via HTML puro, prontos para receber JS animado futuramente -->
+                <div class="space-y-2">
+                    <p class="text-4xl sm:text-5xl font-extrabold tracking-tight">18</p>
+                    <p class="text-sm uppercase font-bold tracking-wider opacity-80">Títulos Conquistados</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-4xl sm:text-5xl font-extrabold tracking-tight">30</p>
+                    <p class="text-sm uppercase font-bold tracking-wider opacity-80">Medalhas</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-4xl sm:text-5xl font-extrabold tracking-tight">50+</p>
+                    <p class="text-sm uppercase font-bold tracking-wider opacity-80">Competições Disputadas</p>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-4xl sm:text-5xl font-extrabold tracking-tight">5</p>
+                    <p class="text-sm uppercase font-bold tracking-wider opacity-80">Anos de Carreira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="py-24 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">Galeria de Fotos</h2>
+                <div class="w-16 h-1 bg-brand-gold mt-3 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Grid Responsivo de Imagens -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia com a bola na mão.jpeg" alt="Momento de jogo 1" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia cortando.jpeg" alt="Momento de jogo 2" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia de bunda pra cima.jpeg" alt="Momento de jogo 3" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia e o resto.jpeg" alt="Momento de jogo 4" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia mandando a guria pra uti mais cedo.jpeg" alt="Momento de jogo 5" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia quicando a bola.jpeg" alt="Momento de jogo 6" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="sofia trofeu linda.jpeg" alt="Momento de jogo 7" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-xl shadow-md h-64 bg-gray-100 group">
+                    <img src="Sofia i o tiem.jpeg" alt="Momento de jogo 8" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PATROCÍNIO -->
+    <section id="patrocinio" class="py-24 bg-gray-100 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-brand-dark">Seja um Parceiro da Minha trajetória </h2>
+            <div class="w-16 h-1 bg-brand-gold mt-3 mx-auto mb-10 rounded-full"></div>
+            
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl space-y-8 border border-gray-100">
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    Estou construindo minha história no voleibol e procuro marcas que queiram crescer comigo nessa jornada. Cada treino, competição e conquista é uma oportunidade de dar visibilidade à sua empresa e fortalecer essa parceria de sucesso.
+                </p>
+
+                <!-- Benefícios de Exposição -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto py-4">
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <i class="fa-solid fa-bullseye text-brand-gold text-xl"></i>
+                        <span class="font-semibold text-gray-700">Forte exposição de marca</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <i class="fa-solid fa-trophy text-brand-gold text-xl"></i>
+                        <span class="font-semibold text-gray-700">Eventos esportivos de destaque</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <i class="fa-solid fa-map-location-dot text-brand-gold text-xl"></i>
+                        <span class="font-semibold text-gray-700">Competições estaduais e nacionais</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <i class="fa-solid fa-share-nodes text-brand-gold text-xl"></i>
+                        <span class="font-semibold text-gray-700">Ativações exclusivas nas Redes Sociais</span>
+                    </div>
+                </div>
+
+                <p class="text-sm font-semibold text-gray-500">
+                    Vamos construir uma história de vitória juntos? 
+                </p>
+
+                <!-- Botão WhatsApp -->
+                <a href="https://wa.me/5547999537684?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20as%20cotas%20de%20patroc%C3%ADnio." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold uppercase text-sm tracking-wider rounded-full hover:bg-[#20ba5a] transition-all duration-300 shadow-lg shadow-green-500/20 w-full sm:w-auto justify-center">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="py-24 bg-brand-dark text-white scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">Contato e Redes</h2>
+                <p class="text-gray-400 mt-2">Disponível para propostas de clubes, marcas, parcerias e imprensa.</p>
+                <div class="w-16 h-1 bg-brand-gold mt-3 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Links de Contato -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-3xl mx-auto">
+                <!-- Instagram -->
+                <a href="https://instagram.com/atleta_username" target="_blank" rel="noopener noreferrer" class="bg-brand-navy p-8 rounded-2xl border border-brand-blue/20 hover:border-brand-gold transition-colors duration-300 group">
+                    <div class="text-4xl text-pink-500 mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></div>
+                    <h3 class="font-bold text-lg mb-1">Instagram</h3>
+                    <p class="text-sm text-gray-400">@sofiaamorimw</p>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/5547999537684" target="_blank" rel="noopener noreferrer" class="bg-brand-navy p-8 rounded-2xl border border-brand-blue/20 hover:border-brand-gold transition-colors duration-300 group">
+                    <div class="text-4xl text-green-500 mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3 class="font-bold text-lg mb-1">WhatsApp</h3>
+                    <p class="text-sm text-gray-400">(47) 99953-7684</p>
+                </a>
+
+                <!-- E-mail -->
+                <a href="mailto:contato@atleta.com" class="bg-brand-navy p-8 rounded-2xl border border-brand-blue/20 hover:border-brand-gold transition-colors duration-300 group">
+                    <div class="text-4xl text-brand-gold mb-4 group-hover:scale-110 transition-transform"><i class="fa-solid fa-envelope"></i></div>
+                    <h3 class="font-bold text-lg mb-1">E-mail</h3>
+                    <p class="text-sm text-gray-400 break-all">carlosjramorim11@gmail.com</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-blue/20 py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-gray-400">&copy; 2026 Sofia Amorim. Todos os direitos reservados.</p>
+            <p class="text-xs text-gray-600">Atleta da Associação de Balneário Camboriú — SC</p>
+        </div>
+    </footer>
+
+    <!-- Lógica Simples do Menu Mobile -->
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fecha o menu mobile ao clicar em um link
+        const navLinks = mobileMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

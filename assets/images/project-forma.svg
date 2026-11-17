@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#131313"/>
+  <circle cx="764" cy="373" r="244" fill="#d9ff59"/>
+  <circle cx="764" cy="373" r="186" fill="#131313"/>
+  <circle cx="764" cy="373" r="134" fill="#ff735b"/>
+  <circle cx="764" cy="373" r="76" fill="#131313"/>
+  <path d="M764 129v488M520 373h488M591 200l346 346M937 200 591 546" stroke="#131313" stroke-opacity=".45" stroke-width="2"/>
+  <text x="82" y="98" fill="#d9ff59" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">FORMA / PLAYGROUND</text>
+  <text x="82" y="309" fill="#f6f5ee" font-family="Arial,sans-serif" font-size="69" font-weight="500">Um espaço</text>
+  <text x="82" y="388" fill="#f6f5ee" font-family="Arial,sans-serif" font-size="69" font-weight="500">para explorar.</text>
+  <text x="86" y="447" fill="#aaa99f" font-family="Arial,sans-serif" font-size="19">Formas simples. Possibilidades sem fim.</text>
+  <rect x="82" y="500" width="177" height="53" rx="26" fill="#d9ff59"/>
+  <text x="109" y="534" fill="#171717" font-family="Arial,sans-serif" font-size="16">Começar a brincar ↗</text>
+  <text x="83" y="683" fill="#77776f" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">EXPERIMENTO INTERATIVO Nº 01</text>
+</svg>

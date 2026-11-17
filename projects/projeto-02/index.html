@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Melhor Hambúrguer de Itajaí</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --dark: #111111;
+            --darker: #1A1A1A;
+            --yellow: #FFD54A;
+            --orange: #FF8C00;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            position: relative;
+            background-color: #000000;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: var(--yellow);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(255, 213, 74, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .whatsapp-widget-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: #25D366;
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            border-radius: 999px;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.25);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-widget-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 35px rgba(37, 211, 102, 0.35);
+        }
+
+        .whatsapp-number {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            letter-spacing: 0.5px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+            perspective: 1300px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .logo span {
+            color: var(--white);
+        }
+
+        .logo img {
+            display: block;
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .hero-content h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 4.5rem;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.08),
+                0 8px 20px rgba(255, 213, 74, 0.25),
+                0 14px 50px rgba(0, 0, 0, 0.25);
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease, text-shadow 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            padding: 1rem 1.6rem;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            border-radius: 1.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 20px 55px rgba(255, 213, 74, 0.15);
+        }
+
+        .hero-content h1::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            z-index: -1;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, rgba(255, 213, 74, 0.65), rgba(255, 140, 0, 0.4), rgba(255, 255, 255, 0.25));
+            opacity: 0.3;
+            filter: blur(16px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-content:hover h1 {
+            transform: rotateX(6deg) rotateY(-8deg) translateZ(2px);
+            text-shadow:
+                0 2px 0 rgba(255, 255, 255, 0.12),
+                0 8px 20px rgba(0, 0, 0, 0.30),
+                0 18px 45px rgba(0, 0, 0, 0.45);
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), 0 26px 80px rgba(255, 213, 74, 0.22);
+        }
+
+        .hero-content:hover h1::before {
+            opacity: 0.55;
+            transform: scale(1.03);
+        }
+
+        .hero-content h1 .no-bold {
+            font-weight: 400;
+            font-family: inherit;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-left: 30px;
+            position: relative;
+            z-index: 1;
+            contain: content;
+        }
+
+        .hero-frame-wrapper {
+            width: 100%;
+            max-width: 550px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.25));
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #animacaoCanvas {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 213, 74, 0.2));
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .feature-card {
+            position: absolute;
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid rgba(255, 213, 74, 0.3);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-1 {
+            top: 10%;
+            right: -5%;
+        }
+
+        .card-2 {
+            bottom: 15%;
+            left: -10%;
+        }
+
+        .feature-card i {
+            color: var(--yellow);
+            font-size: 24px;
+        }
+
+        .feature-card span {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .differentials {
+            background-color: #050505;
+            padding: 60px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .diff-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--dark);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border-bottom: 3px solid var(--dark);
+        }
+
+        .diff-item:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--orange);
+        }
+
+        .diff-item i {
+            font-size: 2.5rem;
+            color: var(--yellow);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        i[class*="fa-"] {
+            text-shadow: 0 0 2px rgba(255,255,255,0.35), 0 0 8px rgba(255,205,0,0.18);
+            filter: drop-shadow(0 0 8px rgba(255,205,0,0.2));
+            transition: all 0.3s ease;
+        }
+
+        .diff-item:hover i {
+            color: var(--orange);
+        }
+
+        .diff-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .diff-item p {
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .location {
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--darker);
+            width: 100%;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 380px;
+            border: 0;
+            display: block;
+        }
+
+        .location-info {
+            flex: 1;
+        }
+
+        .location-info h2 {
+            font-size: 2.8rem;
+            color: var(--yellow);
+            margin-bottom: 20px;
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .info-group i {
+            font-size: 22px;
+            color: var(--orange);
+            margin-top: 3px;
+        }
+
+        .info-group h4 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .info-group p {
+            color: #aaa;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: var(--darker);
+            padding: 30px 6% 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.6;
+            min-width: 180px;
+            text-align: right;
+        }
+
+        .footer-contact p {
+            margin: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .social-links a:hover {
+            background-color: rgba(255, 213, 74, 0.2);
+            color: var(--yellow);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            letter-spacing: 0.02em;
+        }
+
+        /* RESPONSIVIDADE INTERMEDIÁRIA (TABLETS) */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 5% 30px;
+            }
+            .hero-content {
+                margin-bottom: 30px;
+                width: 100%;
+                max-width: 100%;
+            }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-image-container {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            .location {
+                flex-direction: column-reverse;
+                padding: 50px 5%;
+                gap: 30px;
+            }
+            .location-info {
+                text-align: center;
+            }
+            .info-group {
+                justify-content: center;
+                text-align: left;
+            }
+        }
+
+        /* RESPONSIVIDADE MOBILE (CELULARES) */
+        @media (max-width: 576px) {
+            .hero {
+                padding: 40px 4% 24px;
+            }
+            .logo img {
+                max-width: 150px;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+                line-height: 1.15;
+                padding: 0.8rem 1rem;
+                border-radius: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            .hero-content p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+            .hero-buttons .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+            .hero-frame-wrapper {
+                min-height: auto;
+                border-radius: 14px;
+            }
+            .feature-card {
+                display: none;
+            }
+            .differentials {
+                padding: 40px 4%;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .diff-item {
+                padding: 18px 12px;
+            }
+            .location {
+                padding: 40px 4%;
+            }
+            .location-info h2 {
+                font-size: 2.2rem;
+            }
+            .map-container iframe {
+                height: 250px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+            .footer-contact {
+                text-align: center;
+                min-width: 100%;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .whatsapp-widget {
+                right: 16px;
+                bottom: 16px;
+            }
+            .whatsapp-widget-btn {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+        }
+
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255, 213, 74, 0.96), #111 72%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: opacity 0.45s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .page-transition::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 35%, rgba(255,255,255,0.08));
+        }
+
+        .page-transition span {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: textFade 0.55s ease 0.1s forwards;
+        }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader-inner {
+            text-align: center;
+        }
+
+        .preloader-inner .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.16);
+            border-top-color: var(--yellow);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        .preloader-inner p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes textFade {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="spinner"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+    <section class="hero" id="home">
+        <div class="hero-content fade-in">
+            <div class="logo"><img src="Marllon logo.jpeg" alt="Marllon logo" loading="lazy" decoding="async"></div>
+            <h1 class="interactive-title hero-title">O&nbsp;hambúrguer<br>que&nbsp;conquistou<br><span class="no-bold">Itajaí-sc</span></h1>
+            <p>Ingredientes frescos, pão saboroso e entrega rápida. O melhor hambúrguer da região. Faça seu pedido agora ou venha nos visitar.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5547996479991?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Pedir Agora</a>
+                <a href="#location" class="btn btn-secondary"><i class="fa-solid fa-location-dot"></i> Ver Localização</a>
+            </div>
+        </div>
+
+        <div class="hero-image-container fade-in">
+            <div class="hero-frame-wrapper">
+                <canvas id="animacaoCanvas" width="800" height="800"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="differentials">
+        <div class="diff-item">
+            <i class="fa-solid fa-burger"></i>
+            <h3>Premium</h3>
+            <p>Blend exclusivo e pão fresco</p>
+        </div>
+        <div class="diff-item">
+            <i class="fa-solid fa-motorcycle"></i>
+            <h3>Delivery Rápido</h3>
+            <p>Chega quente na sua casa</p>
+        </div>
+        <div class="diff-item">
+            <i class="fa-solid fa-star realistic-star"></i>
+            <h3>Nota 4,9</h3>
+            <p>Avaliação no Google</p>
+        </div>
+        <div class="diff-item">
+            <i class="fa-solid fa-mouse-pointer"></i>
+            <h3>Selecionados</h3>
+            <p>Ingredientes Premium</p>
+        </div>
+    </section>
+
+    <section class="location" id="location">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps?q=R.%20David%20Ad%C3%A3o%20Schmitt%2C%20180%20-%20Barra%20do%20Rio%2C%20Itaja%C3%AD%20-%20SC%2C%2088305-400%2C%20Brasil&z=16&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="location-info">
+            <h2>Venha nos visitar</h2>
+            <div class="info-group">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div>
+                    <h4>Estamos Aqui</h4>
+                    <p>R. David Adão Schmitt, 180 - Barra do Rio<br>Itajaí - SC, 88305-400, Brasil</p>
+                </div>
+            </div>
+            <div class="info-group">
+                <i class="fa-regular fa-clock"></i>
+                <div>
+                    <h4>Horário de Funcionamento</h4>
+                    <p>Terça a Domingo<br>18h30 às 23h30</p>
+                </div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=R.+David+Ad%C3%A3o+Schmitt%2C+180+-+Barra+do+Rio%2C+Itaja%C3%AD+-+SC%2C+88305-400%2C+Brasil" class="btn btn-primary" style="margin-top: 15px;" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-arrow"></i> Abrir no Google Maps</a>
+        </div>
+    </section>
+
+    <div class="whatsapp-widget" id="whatsappWidget">
+        <button class="whatsapp-widget-btn" id="whatsappBtn">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </button>
+    </div>
+
+    <div class="page-transition" id="pageTransition"><span>Carregando...</span></div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo"><img src="Marllon logo.jpeg" alt="Marllon logo" class="footer-logo" loading="lazy" decoding="async"></div>
+            <div class="footer-contact">
+                <p><i class="fa-solid fa-phone"></i> 47 99647-9991</p>
+                <p><i class="fa-solid fa-envelope"></i> contato@itjburger.com.br</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/mg.lanches.porcoes" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MG LANCHES - Itajaí, SC / Desenvolvido por Conversa Digital.</p>
+        </div>
+    </footer>
+
+    <script>
+        const whatsappPhone = '5547996479991';
+        const whatsappMessage = 'Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido';
+        const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${whatsappMessage}`;
+
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', () => {
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
+        const whatsappWidget = document.getElementById('whatsappWidget');
+        if (whatsappWidget) {
+            whatsappWidget.addEventListener('click', () => {
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+
+        const transitionOverlay = document.getElementById('pageTransition');
+        const pageLinks = Array.from(document.querySelectorAll('a[href]:not([href^="#"])'));
+        const interactiveTitle = document.querySelector('.interactive-title');
+
+        // ==========================================
+        // SCRIPT DA ANIMAÇÃO DE FRAMES (CANVAS)
+        // ==========================================
+        const canvas = document.getElementById("animacaoCanvas");
+        const ctx = canvas ? canvas.getContext("2d") : null;
+
+        const pastaEInicio = "ezgif-53de3b96cfed3eae-jpg/ezgif-frame-";
+        const extensao = ".jpg";
+        const totalFrames = 37; 
+        const fps = 7;
+
+        const imagens = [];
+        let framesCarregados = 1;
+        let frameAtual = 0;
+
+        function formatarNumero(num) {
+            return (num + 1).toString().padStart(3, "0");
+        }
+
+        function carregarEIniciarAnimacao() {
+            if (!canvas || !ctx) return;
+
+            for (let i = 0; i < totalFrames; i++) {
+                const img = new Image();
+                const nomeArquivo = `${pastaEInicio}${formatarNumero(i)}${extensao}`;
+                img.src = nomeArquivo;
+
+                img.onload = () => {
+                    framesCarregados++;
+                    if (framesCarregados === totalFrames) {
+                        iniciarAnimacao();
+                    }
+                };
+
+                img.onerror = () => {
+                    console.error(`Erro ao carregar a imagem: ${nomeArquivo}`);
+                };
+
+                imagens.push(img);
+            }
+        }
+
+        function iniciarAnimacao() {
+            const intervalo = 800 / fps;
+
+            setInterval(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (imagens[frameAtual]) {
+                    ctx.drawImage(imagens[frameAtual], 0, 0, canvas.width, canvas.height);
+                }
+                frameAtual = (frameAtual + 1) % totalFrames;
+            }, intervalo);
+        }
+
+        function updateTitleTilt(event) {
+            if (!interactiveTitle) return;
+            const rect = interactiveTitle.getBoundingClientRect();
+            const x = event.clientX - (rect.left + rect.width / 2);
+            const y = event.clientY - (rect.top + rect.height / 2);
+            const rotationX = Math.max(Math.min(-y / 20, 12), -12);
+            const rotationY = Math.max(Math.min(x / 20, 12), -12);
+            interactiveTitle.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+        }
+
+        function resetTitleTilt() {
+            if (!interactiveTitle) return;
+            interactiveTitle.style.transform = '';
+        }
+
+        if (interactiveTitle) {
+            interactiveTitle.addEventListener('mousemove', updateTitleTilt);
+            interactiveTitle.addEventListener('mouseleave', resetTitleTilt);
+        }
+
+        function navigateWithTransition(url) {
+            if (!transitionOverlay) {
+                window.location.href = url;
+                return;
+            }
+
+            transitionOverlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 420);
+        }
+
+        pageLinks.forEach(link => {
+            link.addEventListener('click', event => {
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                    return;
+                }
+
+                const isExternal = link.hostname !== window.location.hostname;
+                if (isExternal) {
+                    return;
+                }
+
+                event.preventDefault();
+                navigateWithTransition(href);
+            });
+        });
+
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+            carregarEIniciarAnimacao();
+        });
+
+        window.addEventListener('pageshow', () => {
+            if (transitionOverlay) {
+                transitionOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
